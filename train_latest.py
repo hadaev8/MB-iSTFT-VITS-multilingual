@@ -110,8 +110,6 @@ def run(rank, n_gpus, hps):
         epoch_str = 1
         global_step = 0
 
-    net_g.expand_speaker_emb(num_to_add=hps.train.speaker_emb_num_to_add)
-
     scheduler_g = torch.optim.lr_scheduler.ExponentialLR(optim_g, gamma=hps.train.lr_decay, last_epoch=epoch_str - 2)
     scheduler_d = torch.optim.lr_scheduler.ExponentialLR(optim_d, gamma=hps.train.lr_decay, last_epoch=epoch_str - 2)
 
