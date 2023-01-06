@@ -25,11 +25,13 @@ def get_text(text, hps):
 
 hps = utils.get_hparams_from_file("configs/ljs_mb_istft_vits.json")
 
+hps.data.n_speakers = hps.data.n_speakers + hps.train.speaker_emb_num_to_add
 
 net_g = SynthesizerTrn(
     len(symbols),
     hps.data.filter_length // 2 + 1,
     hps.train.segment_size // hps.data.hop_length,
+    n_speakers=hps.data.n_speakers,
     **hps.model).cuda()
 _ = net_g.eval()
 
